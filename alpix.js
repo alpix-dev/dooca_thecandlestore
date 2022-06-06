@@ -2,7 +2,9 @@ let getCouponCode = sessionStorage.getItem('localCouponCode');
 let getCouponInfo = sessionStorage.getItem('localCouponInfo');
 
 let textTop = $('.text-top').clone();
+if(window.innerWidth < 990){
 textTop.insertBefore('.header');
+}
 
 if($('.page-cart.has-items.page-static.customer-logged-in').length > 0){
     $('.buy-coupon').hide();
