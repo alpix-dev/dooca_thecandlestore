@@ -1,44 +1,44 @@
-let getCouponCode = sessionStorage.getItem('localCouponCode');
-let getCouponInfo = sessionStorage.getItem('localCouponInfo');
+// let getCouponCode = sessionStorage.getItem('localCouponCode');
+// let getCouponInfo = sessionStorage.getItem('localCouponInfo');
 
 let textTop = $('.text-top').clone();
 if(window.innerWidth < 990){
 textTop.insertBefore('header.header');
 }
 
-if($('.page-cart.has-items.page-static.customer-logged-in').length > 0){
-    $('.buy-coupon').hide();
-    $('.buy-coupon').after('<div id="coupon_custom"><span class="loader_custom"></span><form class="form form-coupon_custom" method="post" action="https://www.thecandlestore.com.br/checkout/cupom"> <div class="row align-items-center position-relative"> <div class="d-none d-sm-block col-12 col-sm-auto"> <label class="label mr-3 mb-0">Possui cupom de desconto?</label><small>Utilize-o abaixo ou na tela de pagamento.</small> </div> <div class="col-12 col-sm mb-3 mb-sm-0"> <input type="text" class="form-control" name="coupon" value="" placeholder="Insira o código"> </div> <div class="col-12 col-sm-auto"> <button type="submit" class="btn btn-secondary"> <span class="text">Aplicar</span> <span class="static-loader"></span> </button> </div> </div> </form><div id="coupon_result"></div></div>');
-    //$('.page-cart .card-resume .buy .buy-coupon i').prependTo('#coupon_custom .form .label');
-    $('.form-coupon_custom').submit(function(e){
-        e.preventDefault();
-        var form = $(this);
-        var actionUrl = form.attr('action');
-        $('#coupon_custom').addClass('loading');
-        $.ajax({
-            type: "POST",
-            url: actionUrl,
-            data: form.serialize(),
-            success: function(data)
-            {
-                let result = $(data).find('.block.resume-discount');
-                $('#coupon_result').html(result);
-                $('#coupon_custom').removeClass('loading');
-                sessionStorage.setItem('localCouponCode',$('.form-coupon_custom [name="coupon"]').val());
-                sessionStorage.setItem('localCouponInfo',$('#coupon_result').html());
-            },
-            always: function(){
-                $('#coupon_custom').removeClass('loading');
-            }
-        });
-    })
-};
+// if($('.page-cart.has-items.page-static.customer-logged-in').length > 0){
+//     $('.buy-coupon').hide();
+//     $('.buy-coupon').after('<div id="coupon_custom"><span class="loader_custom"></span><form class="form form-coupon_custom" method="post" action="https://www.thecandlestore.com.br/checkout/cupom"> <div class="row align-items-center position-relative"> <div class="d-none d-sm-block col-12 col-sm-auto"> <label class="label mr-3 mb-0">Possui cupom de desconto?</label><small>Utilize-o abaixo ou na tela de pagamento.</small> </div> <div class="col-12 col-sm mb-3 mb-sm-0"> <input type="text" class="form-control" name="coupon" value="" placeholder="Insira o código"> </div> <div class="col-12 col-sm-auto"> <button type="submit" class="btn btn-secondary"> <span class="text">Aplicar</span> <span class="static-loader"></span> </button> </div> </div> </form><div id="coupon_result"></div></div>');
+    
+//     $('.form-coupon_custom').submit(function(e){
+//         e.preventDefault();
+//         var form = $(this);
+//         var actionUrl = form.attr('action');
+//         $('#coupon_custom').addClass('loading');
+//         $.ajax({
+//             type: "POST",
+//             url: actionUrl,
+//             data: form.serialize(),
+//             success: function(data)
+//             {
+//                 let result = $(data).find('.block.resume-discount');
+//                 $('#coupon_result').html(result);
+//                 $('#coupon_custom').removeClass('loading');
+//                 sessionStorage.setItem('localCouponCode',$('.form-coupon_custom [name="coupon"]').val());
+//                 sessionStorage.setItem('localCouponInfo',$('#coupon_result').html());
+//             },
+//             always: function(){
+//                 $('#coupon_custom').removeClass('loading');
+//             }
+//         });
+//     })
+// };
 
-if(getCouponCode && getCouponInfo){
-    $('.form-coupon_custom [name="coupon"]').val(getCouponCode);
-    $('#coupon_result').html(getCouponInfo);
+// if(getCouponCode && getCouponInfo){
+//     $('.form-coupon_custom [name="coupon"]').val(getCouponCode);
+//     $('#coupon_result').html(getCouponInfo);
 
-};
+// };
 
 if($('.page--product').length > 0){
     $('.product-shipping').after('<div id="product-shipping-results_custom"></div>');
@@ -87,5 +87,3 @@ if($('.page--product').length > 0){
         });
     })
 };
-
-    
