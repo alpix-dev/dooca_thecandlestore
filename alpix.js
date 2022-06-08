@@ -3,7 +3,7 @@ let getCouponInfo = sessionStorage.getItem('localCouponInfo');
 
 let textTop = $('.text-top').clone();
 if(window.innerWidth < 990){
-textTop.insertBefore('.header');
+textTop.insertBefore('header.header');
 }
 
 if($('.page-cart.has-items.page-static.customer-logged-in').length > 0){
